@@ -42,6 +42,8 @@ x-airflow-common:
 services:
   postgres:
     image: postgres:13
+    ports: 
+        - 5432:5432
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -53,8 +55,6 @@ services:
       interval: 10s
       retries: 5
       start_period: 5s
-      ports: 
-        - 5432:5432
     restart: always
 
   redis:
