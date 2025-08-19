@@ -46,9 +46,9 @@ services:
     ports: 
         - 5432:5432
     environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
@@ -209,12 +209,12 @@ services:
         airflow db init
 
         airflow users create \
-          --username airflow \
-          --password airflow \
+          --username ${AIRFLOW_WWW_USER_USERNAME} \
+          --password ${_AIRFLOW_WWW_USER_PASSWORD:-airflow} \
           --firstname Airflow \
           --lastname Admin \
           --role Admin \
-          --email airflow@gmail.com
+          --email ${_AIRFLOW_WWW_USER_EMAIL:-airflow}
 
         echo
         echo "Creating missing opt dirs if missing:"
@@ -255,6 +255,7 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+      _AIRFLOW_WWW_USER_EMAIL: ${_AIRFLOW_WWW_USER_EMAIL:-airflow}
       _PIP_ADDITIONAL_REQUIREMENTS: ''
     user: "0:0"
 
