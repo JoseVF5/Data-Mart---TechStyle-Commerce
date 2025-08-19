@@ -12,6 +12,7 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
+    AIRLOW__API_AUTH__JWT_SECRET: ${AIRLOW__API_AUTH__JWT_SECRET}
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
     AIRFLOW__CORE__PARALLELISM: '4'
     AIRFLOW__CORE__DAG_CONCURRENCY: '2'
@@ -27,7 +28,9 @@ x-airflow-common:
     - ./logs:/opt/airflow/logs
     - ./config:/opt/airflow/config
     - ./plugins:/opt/airflow/plugins
+    - ./src:/opt/airflow/src
     - ./requirements.txt:/opt/airflow/requirements.txt
+    - ./.env:/opt/airflow/.env
     - ${AIRFLOW_PROJ_DIR:-.}:/sources
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
