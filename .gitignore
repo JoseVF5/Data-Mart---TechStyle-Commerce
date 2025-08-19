@@ -6,5 +6,5 @@ __pycache__/
 logs/
 config/
 venv/
-requirements.txt/
-.env/
+requirements.txt
+.env
