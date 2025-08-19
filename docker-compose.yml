@@ -208,14 +208,6 @@ services:
 
         airflow db init
 
-        airflow users create \
-          --username ${AIRFLOW_WWW_USER_USERNAME} \
-          --password ${_AIRFLOW_WWW_USER_PASSWORD:-airflow} \
-          --firstname Airflow \
-          --lastname Admin \
-          --role Admin \
-          --email ${_AIRFLOW_WWW_USER_EMAIL:-airflow}
-
         echo
         echo "Creating missing opt dirs if missing:"
         echo
@@ -255,7 +247,6 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
-      _AIRFLOW_WWW_USER_EMAIL: ${_AIRFLOW_WWW_USER_EMAIL:-airflow}
       _PIP_ADDITIONAL_REQUIREMENTS: ''
     user: "0:0"
 
