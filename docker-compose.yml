@@ -27,9 +27,7 @@ x-airflow-common:
     - ./logs:/opt/airflow/logs
     - ./config:/opt/airflow/config
     - ./plugins:/opt/airflow/plugins
-    - ./scr:/opt/airflow/scr
     - ./requirements.txt:/opt/airflow/requirements.txt
-    - ./.env:/opt/airflow/.env
     - ${AIRFLOW_PROJ_DIR:-.}:/sources
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
