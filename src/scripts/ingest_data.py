@@ -47,4 +47,5 @@ def ingestao_data():
         print(f"Ocorreu um erro durante a ingestão de dados: {e}")
         
 if __name__ == '__main__':
-    ingestao_data()        
+    ingestao_data()
+    
