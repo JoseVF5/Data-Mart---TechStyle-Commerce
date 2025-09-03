@@ -14,12 +14,12 @@ DB_PORT='5432'
 DB_NAME=os.getenv('POSTGRES_DB')
 
 # Informações do arquivo e da tabela
-CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), '...', 'data', 'src/data/raw/clientes/olist_customers_dataset/olist_customers_dataset.csv')
+CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'raw/clientes/olist_customers_dataset/olist_customers_dataset.csv')
 TABLE_NAME  = 'Clientes'
 
 
 def ingestao_data():
-    print('Iniciando a ingestão de dados do arquivo: {CSV_FILE_PATH} ...')
+    print('Iniciando a ingestão de dados do arquivo: {CSV_FILE_PATH}...')
     
     try:
         # Criando a conexão com o banco de dados
@@ -34,9 +34,7 @@ def ingestao_data():
         data_frame.to_sql(
             name=TABLE_NAME,
             con=engine,    
-            if_exists={'fail',
-                       'replace',
-                       'append'},
+            if_exists='replace',
             index=False
             )
         print("Ingestão de dados concluída com sucesso!")
