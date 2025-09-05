@@ -60,11 +60,11 @@
 ---
 
 ## 🗺️ Roadmap (próximos passos)
-- [x] **Definição do Problema e Arquitetura**
-- [x] Configuração do Controle de Versão
-- [x] Geração dos Dados de Origem (Fontes)
-- [x] "Dockerizar" o Projeto
-- [x] Estruturar o Projeto Airflow
+- [x] ✅ Definição do Problema e Arquitetura
+- [x] ✅ Configuração do Controle de Versão
+- [x] ✅ Geração dos Dados de Origem (Fontes)
+- [x] ✅ "Dockerizar" o Projeto
+- [x] ✅ Estruturar o Projeto Airflow
 - [ ] Desenvolver o Script de Ingestão
 - [ ] Criar a DAG de Ingestão no Airflow 
 - [ ] Configurar o Projeto dbt  
