@@ -39,6 +39,7 @@
     └── scripts
         └── ingest_data.py
 
+```
 
 ## ▶️ Pré-requisitos
 - Docker instalado  
