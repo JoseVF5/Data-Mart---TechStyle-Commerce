@@ -60,7 +60,7 @@
 ---
 
 ## 🗺️ Roadmap (próximos passos)
-- [x] Definição do Problema e Arquitetura
+- [x] **Definição do Problema e Arquitetura**
 - [x] Configuração do Controle de Versão
 - [x] Geração dos Dados de Origem (Fontes)
 - [x] "Dockerizar" o Projeto
