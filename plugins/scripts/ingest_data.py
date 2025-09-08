@@ -1,18 +1,16 @@
 import pandas as pd
 import os
-import psycopg2
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
 # Carregando as variáves de ambiente do arquivo .env
 load_dotenv()
 
-# Informações de conexão
-#DB_USER=os.getenv('POSTGRES_USER')
-#DB_PASSWORD=os.getenv('POSTGRES_PASSWORD')
-#DB_HOST=os.getenv('POSTGRES_HOST')
-#DB_PORT=5432
-#DB_NAME=os.getenv('POSTGRES_DB')
+DB_USER=os.getenv('POSTGRES_USER')
+DB_PASSWORD=os.getenv('POSTGRES_PASSWORD')
+DB_HOST=os.getenv('POSTGRES_HOST')
+DB_PORT='5432'
+DB_NAME=os.getenv('POSTGRES_DB')
 
 # Informações do arquivo e da tabela
 current_dir = os.path.dirname(__file__) # Pega o diretório do arquivo atual (ingest_data.py)
@@ -26,14 +24,7 @@ def ingestao_data():
     
     try:
         # Criando a conexão com o banco de dados
-        #f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
-        con_string = psycopg2.connect(
-            host = os.getenv('POSTGRES_HOST'),
-            port = 5432,
-            dbname = os.getenv('POSTGRES_DB'),
-            user= os.getenv('POSTGRES_USER'),
-            password = os.getenv('POSTGRES_PASSWORD')
-            ) 
+        con_string = f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
         engine = create_engine(con_string)
         print("Conexão com o PostgreSQL estabelecida com sucesso.")
         
@@ -56,4 +47,3 @@ def ingestao_data():
         
 if __name__ == '__main__':
     ingestao_data()
-    
