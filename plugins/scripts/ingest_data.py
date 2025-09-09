@@ -13,13 +13,6 @@ DB_HOST=os.getenv('POSTGRES_HOST')
 DB_PORT=os.getenv('POSTGRES_PORT')
 DB_NAME=os.getenv('POSTGRES_DB')
 
-# Informações do arquivo e da tabela
-#current_dir = os.path.dirname(__file__) # Pega o diretório do arquivo atual (ingest_data.py)
-#project_root = os.path.abspath(os.path.join(current_dir, '..', '..')) # Navega dois níveis acima para a raiz do projeto
-#CSV_FILE_PATH = os.path.join(project_root, 'src', 'data', 'raw', 'clientes', 'olist_customers_dataset', 'olist_customers_dataset.csv')
-#TABLE_NAME  = 'Clientes'
-
-
 def ingestao_data(file_path, table_name):
     print('Iniciando a ingestão de dados do arquivo: {file_path}...')
     
