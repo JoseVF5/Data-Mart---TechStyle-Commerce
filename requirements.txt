@@ -1,5 +1,7 @@
 pandas
 pyarrow
+apache-airflow
 apache-airflow[google]
 apache-airflow-providers-postgres
-argparser
+apache-airflow-providers-http
+apache-airflow-providers-docker
