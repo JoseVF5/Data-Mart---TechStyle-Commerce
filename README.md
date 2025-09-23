@@ -65,7 +65,7 @@
 - [x] ✅ Geração dos Dados de Origem (Fontes)
 - [x] ✅ "Dockerizar" o Projeto
 - [x] ✅ Estruturar o Projeto Airflow
-- [ ] Desenvolver o Script de Ingestão
+- [x] ✅ Desenvolver o Script de Ingestão
 - [ ] Criar a DAG de Ingestão no Airflow 
 - [ ] Configurar o Projeto dbt  
 - [ ] Criar Modelos de Staging (staging) 
