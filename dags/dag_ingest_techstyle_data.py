@@ -29,7 +29,7 @@ with DAG(
     def pipeline_dinamica():
         
         # Configurando uma função para listar todos os arquivos CSV de uma pasta configurada via variável
-        @task
+        @task(task_id='Arquivos_CSV')
         def listar_arquivos_csv() -> list[str]:
             caminho_config = Variable.get('caminho_pasta')
             print(f'buscando arquivos na pasta confirguirada: "{caminho_config}" .')
@@ -53,7 +53,7 @@ with DAG(
             task_id = 'validar_arquivo',
             params = {'caminho_do_arquivo': ''},
             bash_command = """
-            FILEPATH ="{{ parms.caminho_do_arquivo }}" 
+            FILEPATH ="{{ caminho_do_arquivo }}" 
             echo "Validando o arquivo: "$FILEPATH" "
             LINE_COUNT=$(wc -l < "$FILEPATH")
             if [ "$LINE_COUNT" -le 1 ]; then
@@ -89,8 +89,7 @@ with DAG(
                 nome_tabela_destino = tabela_alvo
             )
             print(resultado)
-         
-           
+                  
         # 1. Obter a listar dos arquivos 
         lista_de_arquivos = listar_arquivos_csv()
         
@@ -101,12 +100,11 @@ with DAG(
         tarefa_python_mapeada = processar_ingest.expand(caminho_do_arquivo=lista_de_arquivos)
         
         """ 
-        4. Definindo a ordem de execução
+        4- Definindo a ordem de execução
         - A tarefa de validação bash é executada após a listagem
         - A tarefa de processamento é executado após a validação
         """
         
         tarefa_bash_mapeada >> tarefa_python_mapeada
-        
-        
+                
 pipeline_dinamica()
