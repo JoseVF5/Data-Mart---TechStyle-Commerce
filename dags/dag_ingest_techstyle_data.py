@@ -33,7 +33,7 @@ def chamar_arquivo_ingestao(nome_arquivo, nome_tabela):
         'owner': 'Jose Freitas',
         'depends_on_past': False,
         'retries': 3,
-        'retry_delay': timedelta(minutes=5)
+        'retry_delay': timedelta(minutes=2)
     },
     catchup = False,
     tags = ['ingestao', 'dynamic']
@@ -44,19 +44,19 @@ def pipeline_em_ordem():
     ingest_clientes = PythonOperator(
         task_id = 'ingestao_clientes',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'clientes.csv', 'nome_tabela': 'clientes_stagging'}
+        op_kwargs = {'nome_arquivo': 'olist_customers_dataset.csv', 'nome_tabela': 'clientes_stagging'}
     )
     
     ingest_produtos = PythonOperator(
         task_id = 'ingestao_produtos',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'produtos.csv', 'nome_tabela': 'produtos_stagging'}
+        op_kwargs = {'nome_arquivo': 'product_category_name_translation.csv', 'nome_tabela': 'produtos_stagging'}
     )
     
     ingest_pedidos = PythonOperator(
         task_id = 'ingestao_pedidos',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'pedidos.csv', 'nome_tabela': 'pedidos_stagging'}
+        op_kwargs = {'nome_arquivo': 'olist_order_items_dataset.csv', 'nome_tabela': 'pedidos_stagging'}
     )
     
     [ingest_clientes, ingest_produtos] >> ingest_pedidos
