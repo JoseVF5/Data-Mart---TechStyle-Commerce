@@ -22,7 +22,7 @@ def chamar_arquivo_ingestao(nome_arquivo, nome_tabela):
         if len(f.readlines()) <= 1:
             raise ValueError(f'Arquivo {caminho_config} está vazio ou contém apenas um cabeçalho')
     
-    ingestao_data(caminho_do_arquivo=caminho_config, nome_tabela_destino=nome_tabela)
+    ingestao_data(file_path=caminho_config, table_name=nome_tabela)
 
 @dag(
     dag_id = 'Ingest_dynamic_dag',
