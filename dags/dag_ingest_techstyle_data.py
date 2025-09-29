@@ -50,7 +50,7 @@ def pipeline_em_ordem():
     ingest_produtos = PythonOperator(
         task_id = 'ingestao_produtos',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'produtos/product_category_name_translation/product_category_name_translation.csv', 'nome_tabela': 'produtos_stagging'}
+        op_kwargs = {'nome_arquivo': 'produtos/product_category_name_translation.csv', 'nome_tabela': 'produtos_stagging'}
     )
     
     ingest_produtos_categoria = PythonOperator(
