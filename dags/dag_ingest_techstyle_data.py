@@ -17,7 +17,7 @@ def chamar_arquivo_ingestao(nome_arquivo, nome_tabela):
     caminho_config = os.path.join(CAMINHO_BASE, nome_arquivo)
     if not os.path.exists(caminho_config):
         raise FileNotFoundError(f'Arquivo não encontrado: {caminho_config}')
-    
+   
     with open(caminho_config, 'r') as f:
         if len(f.readlines()) <= 1:
             raise ValueError(f'Arquivo {caminho_config} está vazio ou contém apenas um cabeçalho')
@@ -44,21 +44,39 @@ def pipeline_em_ordem():
     ingest_clientes = PythonOperator(
         task_id = 'ingestao_clientes',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'olist_customers_dataset.csv', 'nome_tabela': 'clientes_stagging'}
+        op_kwargs = {'nome_arquivo': 'clientes/olist_customers_dataset/olist_customers_dataset.csv', 'nome_tabela': 'clientes_stagging'}
     )
     
     ingest_produtos = PythonOperator(
         task_id = 'ingestao_produtos',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'product_category_name_translation.csv', 'nome_tabela': 'produtos_stagging'}
+        op_kwargs = {'nome_arquivo': 'produtos/product_category_name_translation/product_category_name_translation.csv', 'nome_tabela': 'produtos_stagging'}
     )
     
-    ingest_pedidos = PythonOperator(
-        task_id = 'ingestao_pedidos',
+    ingest_produtos_categoria = PythonOperator(
+        task_id = 'ingestao_produtos_categ',
         python_callable = chamar_arquivo_ingestao,
-        op_kwargs = {'nome_arquivo': 'olist_order_items_dataset.csv', 'nome_tabela': 'pedidos_stagging'}
+        op_kwargs = {'nome_arquivo': 'produtos/product_category_name_translation.csv', 'nome_tabela': 'produtos_categoria_stagging'}
     )
     
-    [ingest_clientes, ingest_produtos] >> ingest_pedidos
+    ingest_pedidos_itens = PythonOperator(
+        task_id = 'ingestao_pedidos_itens',
+        python_callable = chamar_arquivo_ingestao,
+        op_kwargs = {'nome_arquivo': 'pedidos/olist_order_items_dataset/olist_order_items_dataset.csv', 'nome_tabela': 'pedidos_itens_stagging'}
+    )
+    
+    ingest_pedidos_pagamentos = PythonOperator(
+        task_id = 'ingestao_pedidos_pagamentos',
+        python_callable = chamar_arquivo_ingestao,
+        op_kwargs = {'nome_arquivo': 'pedidos/olist_order_payments_dataset/olist_order_payments_dataset.csv', 'nome_tabela': 'pedidos_pagamentos_stagging'}
+    )
+    
+    ingest_pedidos_datasets = PythonOperator(
+        task_id = 'ingestao_pedidos_dataset',
+        python_callable = chamar_arquivo_ingestao,
+        op_kwargs = {'nome_arquivo': 'pedidos/olist_orders_dataset/olist_orders_dataset.csv', 'nome_tabela': 'pedidos_stagging'}
+    )
+    
+    ingest_clientes >> [ingest_produtos, ingest_produtos_categoria]  >> ingest_pedidos_datasets >> ingest_pedidos_itens >> ingest_pedidos_pagamentos 
 
 pipeline_em_ordem()
