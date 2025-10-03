@@ -66,7 +66,7 @@
 - [x] ✅ "Dockerizar" o Projeto
 - [x] ✅ Estruturar o Projeto Airflow
 - [x] ✅ Desenvolver o Script de Ingestão
-- [ ] Criar a DAG de Ingestão no Airflow 
+- [x] ✅ Criar a DAG de Ingestão no Airflow 
 - [ ] Configurar o Projeto dbt  
 - [ ] Criar Modelos de Staging (staging) 
 - [ ] Criar Modelos Dimensionais e de Fatos (marts)  
