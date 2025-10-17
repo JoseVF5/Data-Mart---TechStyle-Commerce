@@ -1,0 +1,8 @@
+DBT_project:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST') }}"
+      user: "{{ env_var('POSTGRES_USER') }}"
+      passoword: "{{ env_var('POSTGRES_PASSWORD') }}"
