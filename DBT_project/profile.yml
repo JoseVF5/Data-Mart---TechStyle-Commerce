@@ -6,3 +6,7 @@ DBT_project:
       host: "{{ env_var('POSTGRES_HOST') }}"
       user: "{{ env_var('POSTGRES_USER') }}"
       passoword: "{{ env_var('POSTGRES_PASSWORD') }}"
+      port: "{{ env_var('POSTGRES_DB') }}"
+      dbname: "{{ env_var('POSTGRES_DB') }}"
+      schema: dev_schema
+      threads: [1 or more]
