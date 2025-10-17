@@ -5,3 +5,4 @@ apache-airflow[google]
 apache-airflow-providers-postgres
 apache-airflow-providers-http
 apache-airflow-providers-docker
+dbt-postgres
