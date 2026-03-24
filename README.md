@@ -108,9 +108,9 @@ A seguir, uma lista das principais tecnologias e conceitos aplicados neste proje
 - [x] ✅ Estruturar o Projeto Airflow
 - [x] ✅ Desenvolver o Script de Ingestão
 - [x] ✅ Criar a DAG de Ingestão no Airflow 
-- [ ] Configurar o Projeto dbt  
-- [ ] Criar Modelos de Staging (staging) 
-- [ ] Criar Modelos Dimensionais e de Fatos (marts)  
-- [ ] Implementar Testes de Qualidade  
+- [x] ✅ Configurar o Projeto dbt  
+- [x] ✅ Criar Modelos de Staging (staging) 
+- [x] ✅ Criar Modelos Dimensionais e de Fatos (marts)  
+- [x] ✅ Implementar Testes de Qualidade  
 - [ ] Integrar dbt com Airflow 
 - [ ] Configurar a Ferramenta de BI
